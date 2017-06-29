@@ -67,6 +67,10 @@
       
         Content: `{ error: 'vyatsu.ru error: <status code>' }`
 
+    - Code: 500
+    
+        Content: `{ error: 'Error while parsing html file' }`
+
     - Code: 503
       
         Content: `{ error: 'Service unavailable: <error message>' }`
@@ -98,3 +102,8 @@
         ]
       }
       ```
+
+  - Error response:
+    - Code: 500
+      
+        Content: `{ error: 'Error while parsing html file' }`
