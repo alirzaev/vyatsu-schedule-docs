@@ -7,7 +7,7 @@
 - [Show schedule of group](#schedule_of_group)
 - [Parse html document with group schedule](#parse_schedule)
 
-#### Show schedule calls {#schedule_calls}
+### Show schedule calls
 
 **General:**
 
@@ -32,7 +32,7 @@ Content:
 ]
 ```
 
-#### Show list of groups (JSON) {#list_of_groups_json}
+### Show list of groups (JSON)
 
 **General:**
 
@@ -53,7 +53,7 @@ Content:
 }
 ```
 
-#### Show list of groups (XML) {#list_of_groups_xml}
+### Show list of groups (XML)
 
 **General:**
 
@@ -74,7 +74,7 @@ Content:
 </groups>
 ```
 
-#### Show schedule of group {#schedule_of_group}
+### Show schedule of group
 
 **General**
 
@@ -142,7 +142,7 @@ Content:
 }
 ```
 
-#### Parse html document with group schedule {#parse_schedule}
+### Parse html document with group schedule
 
 **General:**
 
