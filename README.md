@@ -1,109 +1,187 @@
-# REST API for  VyatSU schedule web server
+# REST API for VyatSU schedule web server
 
-## Usage
+## Table of contents
+- [Show schedule calls](#schedule_calls)
+- [Show list of groups (JSON)](#list_of_groups_json)
+- [Show list of groups (XML)](#list_of_groups_xml)
+- [Show schedule of group](#schedule_of_group)
+- [Parse html document with group schedule](#parse_schedule)
 
-#### Show schedule calls
-  - URL: `/vyatsu/bells`
-  - Method: `GET`
-  - Success response:
-    - Code: 200
+#### Show schedule calls {#schedule_calls}
 
-        Content: `[["8:20", "9:50"], ... ["18:55", "20:25"]]`
+**General:**
 
-#### Show list of groups (JSON)
-  - URL: `/vyatsu/groups.json`
-  - Method: `GET`
-  - Success response:
-    - Code: 200
-      
-        Content: `{ "Group name": "Group id", ... "Group name": "Group id" }`
+URL: `/vyatsu/bells`
 
-#### Show list of groups (XML)
-  - URL: `/vyatsu/groups.xml`
-  - Method: `GET`
-  - Success response:
-    - Code: 200
-      
-        Content: 
-        ```
-        <?xml version="1.0" ?>
-        <groups>
-        <group name="Group name">Group id</group>
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+[
+    ["8:20", "9:50"],
+    ["10:00", "11:30"],
+    ["11:45", "13:15"],
+    ["14:00", "15:30"],
+    ["15:45", "17:15"],
+    ["17:20", "18:50"],
+    ["18:55", "20:25"]
+]
+```
+
+#### Show list of groups (JSON) {#list_of_groups_json}
+
+**General:**
+
+URL: `/vyatsu/groups.json`
+
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+{
+    "Group name": "Group id",
+    ...
+    "Group name": "Group id"
+}
+```
+
+#### Show list of groups (XML) {#list_of_groups_xml}
+
+**General:**
+
+URL: `/vyatsu/groups.xml`
+
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content: 
+```xml
+<?xml version="1.0" ?>
+<groups>
+<group name="Group name">Group id</group>
+...
+</groups>
+```
+
+#### Show schedule of group {#schedule_of_group}
+
+**General**
+
+URL: `/vyatsu/schedule/:group_id/:season`
+
+Method: `GET`
+
+URL params:
+ - `id=[number]`
+ - `season='autumn' | 'spring'`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+{ "weeks": [
+    [
+        ["Subject", "Yet another subject", ... ], //subjects on Monday
         ...
-        </groups>
-        ```
-
-#### Show schedule of group
-  - URL: `/vyatsu/schedule/:group_id/:season`
-  - Method: `GET`
-  - URL params:
-    - `id=[number]`
-    - `season='autumn' | 'spring'`
-  - Success response:
-    - Code: 200
-      
-        Content:
-        ```
-        { weeks:
-          [
-            [
-              ["Subject","Yet another subject", ... ],
-              ...
-            ],
-            [
-              ["Some boring suject", ... ],
-              ...
-            ]
-          ]
-        }
-        ```
+    ], //odd week
+    [
+        ["Some boring suject", ... ], //subjects on Monday
+        ...
+    ] //even week
+]}
+```
   
-  - Error response:
-    - Code: 422
-      
-        Content: `{ error: "Invalid param 'season'" }` OR `{ error: 'Invalid group id' }`
+**Error responses:**
 
-    - Code: 424
-      
-        Content: `{ error: 'vyatsu.ru error: <status code>' }`
+Code: `422`
 
-    - Code: 500
-    
-        Content: `{ error: 'Error while parsing html file' }`
+Content:
+```json
+{
+    "error": "Invalid param 'season'"
+}
+```
+---------
+Code: `424`
 
-    - Code: 503
-      
-        Content: `{ error: 'Service unavailable: <error message>' }`
+Content:
+```json
+{
+    "error": "vyatsu.ru error: <status code>"
+}
+```
+---------
+Code: `500`
 
-#### Parse html document with group schedule
-  - URL: `/vyatsu/parse_schedule`
-  - Method: `POST`
-  - Data params:
-    ```
-    { 
-      html_schedule: "<HTML><HEAD>..." 
-    }
-    ```
-  - Success response:
-    - Code: 200
-      
-        Content:
-      ```
-      { weeks:
-        [
-          [
-            ["Subject","Yet another subject", ... ],
-            ...
-          ],
-          [
-            ["Some boring subject", ... ],
-            ...
-          ]
-        ]
-      }
-      ```
+Content:
+```json
+{
+    "error": "Error while parsing html file"
+}
+```
+---------
+Code: `503`
 
-  - Error response:
-    - Code: 500
-      
-        Content: `{ error: 'Error while parsing html file' }`
+Content:
+```json
+{
+    "error": "Service unavailable: <error message>"
+}
+```
+
+#### Parse html document with group schedule {#parse_schedule}
+
+**General:**
+
+URL: `/vyatsu/parse_schedule`
+
+Method: `POST`
+
+Data params:
+```json
+{
+    "html_schedule": "<HTML><HEAD>..."
+}
+```
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+{ "weeks": [
+    [
+        ["Subject", "Yet another subject", ... ], //subjects on Monday
+        ...
+    ], //odd week
+    [
+        ["Some boring suject", ... ], //subjects on Monday
+        ...
+    ] //even week
+]}
+```
+
+**Error response:**
+
+Code: `500`
+
+Content:
+```json
+{
+    "error": "Error while parsing html file"
+}
+```
