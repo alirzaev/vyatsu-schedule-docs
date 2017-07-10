@@ -83,6 +83,7 @@ URL: `/vyatsu/schedule/:group_id/:season`
 Method: `GET`
 
 URL params:
+
  - `id=[number]`
  - `season='autumn' | 'spring'`
 
