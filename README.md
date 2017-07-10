@@ -11,7 +11,7 @@
 
 **General:**
 
-URL: `/vyatsu/bells`
+URL: `/vyatsu/calls`
 
 Method: `GET`
 
