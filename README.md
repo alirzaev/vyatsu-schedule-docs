@@ -4,6 +4,8 @@
 - [Show schedule calls](#schedule_calls)
 - [Show list of groups (JSON)](#list_of_groups_json)
 - [Show list of groups (XML)](#list_of_groups_xml)
+- [Show list of groups ordered by faculties (JSON)](#list_of_groups_by_faculty_json)
+- [Show list of groups ordered by faculties (XML)](#list_of_groups_by_faculty_xml)
 - [Show schedule of group](#schedule_of_group)
 - [Parse html document with group schedule](#parse_schedule)
 
@@ -72,6 +74,59 @@ Content:
 <group name="Group name">Group id</group>
 ...
 </groups>
+```
+
+### Show list of groups ordered by faculties (JSON)
+
+**General**
+
+URL: `/vyatsu/groups/by_faculty.json`
+
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+{
+    'Faculty name':
+    {
+        "Group name": "Group id",
+        ...
+        "Group name": "Group id"
+    }
+    ...
+    'Yet another faculty name':
+    {
+        "Group name": "Group id",
+        ...
+        "Group name": "Group id"
+    }
+}
+```
+
+### Show list of groups ordered by faculties (XML)
+
+URL: `/vyatsu/groups/by_faculty.xml`
+
+Method: `GET`
+
+**Success response**
+
+Code: `200`
+
+Content:
+```xml
+<?xml version="1.0" ?>
+<faculties>
+    <faculty name="Faculty name">
+    <group name="Group name">Group id</group>
+    ...
+    </faculty>
+    ...
+</faculties>
 ```
 
 ### Show schedule of group
