@@ -148,16 +148,19 @@ Code: `200`
 
 Content:
 ```js
-{ "weeks": [
-    [
-        ["Subject", "Yet another subject", ... ], //subjects on Monday
-        ...
-    ], //odd week
-    [
-        ["Some boring suject", ... ], //subjects on Monday
-        ...
-    ] //even week
-]}
+{ 
+    "group": "group name",
+    "weeks": [
+        [
+            ["Subject", "Yet another subject", ... ], //subjects on Monday
+            ...
+        ], //odd week
+        [
+            ["Some boring suject", ... ], //subjects on Monday
+            ...
+        ] //even week
+    ]
+}
 ```
   
 **Error responses:**
