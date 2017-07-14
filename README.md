@@ -139,7 +139,7 @@ Method: `GET`
 
 URL params:
 
- - `id=[number]`
+ - `group_id=[number]`
  - `season='autumn' | 'spring'`
 
 **Success response:**
