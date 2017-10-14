@@ -178,7 +178,7 @@ Code: `500`
 Content:
 ```json
 {
-    "error": "Error while parsing html file"
+    "error": "Error while parsing pdf file"
 }
 ```
 ---------
