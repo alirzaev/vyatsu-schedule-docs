@@ -7,7 +7,6 @@
 - [Show list of groups ordered by faculties (JSON)](#list_of_groups_by_faculty_json)
 - [Show list of groups ordered by faculties (XML)](#list_of_groups_by_faculty_xml)
 - [Show schedule of group](#schedule_of_group)
-- [Parse html document with group schedule](#parse_schedule)
 
 ### Show schedule calls
 
@@ -170,16 +169,7 @@ Code: `422`
 Content:
 ```json
 {
-    "error": "Invalid param 'season'"
-}
-```
----------
-Code: `424`
-
-Content:
-```json
-{
-    "error": "vyatsu.ru error: <status code>"
+    "error": "Invalid param 'season' or 'group_id'"
 }
 ```
 ---------
@@ -192,55 +182,11 @@ Content:
 }
 ```
 ---------
-Code: `503`
-
-Content:
-```json
-{
-    "error": "Service unavailable: <error message>"
-}
-```
-
-### Parse html document with group schedule
-
-**General:**
-
-URL: `/vyatsu/parse_schedule`
-
-Method: `POST`
-
-Data params:
-```json
-{
-    "html_schedule": "<HTML><HEAD>..."
-}
-```
-
-**Success response:**
-
-Code: `200`
-
-Content:
-```js
-{ "weeks": [
-    [
-        ["Subject", "Yet another subject", ... ], //subjects on Monday
-        ...
-    ], //odd week
-    [
-        ["Some boring suject", ... ], //subjects on Monday
-        ...
-    ] //even week
-]}
-```
-
-**Error response:**
-
 Code: `500`
 
 Content:
 ```json
 {
-    "error": "Error while parsing html file"
+    "error": "Internal server error"
 }
 ```
