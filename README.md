@@ -149,6 +149,7 @@ Content:
 ```js
 { 
     "group": "group name",
+    "date_range": ["first_date", "second_date"],
     "weeks": [
         [
             ["Subject", "Yet another subject", ... ], //subjects on Monday
