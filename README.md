@@ -174,7 +174,7 @@ Content:
 }
 ```
 ---------
-Code: `500`
+Code: `422`
 
 Content:
 ```json
