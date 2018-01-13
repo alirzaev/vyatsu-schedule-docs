@@ -170,16 +170,7 @@ Code: `422`
 Content:
 ```json
 {
-    "error": "Invalid param 'season' or 'group_id'"
-}
-```
----------
-Code: `422`
-
-Content:
-```json
-{
-    "error": "Error while parsing pdf file"
+    "error": "Error decription"
 }
 ```
 ---------
