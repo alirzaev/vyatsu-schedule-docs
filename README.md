@@ -1,12 +1,6 @@
 # REST API for VyatSU schedule web server
 
-## Table of contents
-- [Show schedule calls](#schedule_calls)
-- [Show list of groups (JSON)](#list_of_groups_json)
-- [Show list of groups (XML)](#list_of_groups_xml)
-- [Show list of groups ordered by faculties (JSON)](#list_of_groups_by_faculty_json)
-- [Show list of groups ordered by faculties (XML)](#list_of_groups_by_faculty_xml)
-- [Show schedule of group](#schedule_of_group)
+## API v1.0
 
 ### Show schedule calls
 
@@ -170,7 +164,14 @@ Code: `422`
 Content:
 ```json
 {
-    "error": "Invalid param 'season' or 'group_id'"
+    "error": "Unknown groupId: <groupId>"
+}
+```
+---------
+Content:
+```json
+{
+    "error": "Unknown season: <season>"
 }
 ```
 ---------
@@ -179,7 +180,25 @@ Code: `422`
 Content:
 ```json
 {
-    "error": "Error while parsing pdf file"
+    "error": "Error while processing pdf file"
+}
+```
+---------
+Code: `422`
+
+Content:
+```json
+{
+    "error": "Invalid pdf file"
+}
+```
+---------
+Code: `422`
+
+Content:
+```json
+{
+    "error": "vyatsu.ru server error"
 }
 ```
 ---------
@@ -190,4 +209,72 @@ Content:
 {
     "error": "Internal server error"
 }
+```
+
+## API v2.0
+
+### Show schedule calls
+
+**General:**
+
+URL: `/vyatsu/v2/calls`
+
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+[
+    {
+        "start": "8:20", "end": "9:50"
+    },  
+    {  
+        "start": "10:00", "end": "11:30"
+    },  
+    {  
+        "start": "11:45", "end": "13:15"
+    },  
+    {  
+        "start": "14:00", "end": "15:30"
+    },  
+    {  
+        "start": "15:45", "end": "17:15"
+    },  
+    {  
+        "start": "17:20", "end": "18:50"
+    },  
+    {  
+        "start": "18:55", "end": "20:25"
+    }
+]
+```
+
+### Show list of groups (JSON)
+
+**General:**
+
+URL: `/vyatsu/v2/groups.json`
+
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+```js
+[
+    {
+        "id": "Group id",
+        "name": "Group name"
+    },
+    ...
+    {
+        "id": "Group id",
+        "name": "Group name"
+    }
+]
 ```
