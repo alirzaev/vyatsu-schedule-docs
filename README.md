@@ -17,7 +17,7 @@ Code: `200`
 Content:
 ```js
 [
-    ["8:20", "9:50"],
+    ["8:20",   "9:50"],
     ["10:00", "11:30"],
     ["11:45", "13:15"],
     ["14:00", "15:30"],
@@ -40,13 +40,8 @@ Method: `GET`
 Code: `200`
 
 Content:
-```js
-{
-    "Group name": "Group id",
-    ...
-    "Group name": "Group id"
-}
-```
+
+JSON object of key-value pairs `"group_name": "group_id"`
 
 ### Show list of groups (XML)
 
@@ -64,8 +59,10 @@ Content:
 ```xml
 <?xml version="1.0" ?>
 <groups>
-<group name="Group name">Group id</group>
-...
+    <group name="Group name #1">Group id #1</group>
+    <group name="Group name #2">Group id #2</group>
+    ...
+    <group name="Group name #N">Group id #N</group>
 </groups>
 ```
 
@@ -82,23 +79,9 @@ Method: `GET`
 Code: `200`
 
 Content:
-```js
-{
-    'Faculty name':
-    {
-        "Group name": "Group id",
-        ...
-        "Group name": "Group id"
-    }
-    ...
-    'Yet another faculty name':
-    {
-        "Group name": "Group id",
-        ...
-        "Group name": "Group id"
-    }
-}
-```
+
+JSON object of key-value pairs `"faculty_name": groups_dict`, 
+where `groups_dict` is JSON object of key-value pairs `"group_name": "group_id"`
 
 ### Show list of groups ordered by faculties (XML)
 
@@ -114,9 +97,11 @@ Content:
 ```xml
 <?xml version="1.0" ?>
 <faculties>
-    <faculty name="Faculty name">
-    <group name="Group name">Group id</group>
-    ...
+    <faculty name="Faculty name #1">
+        <group name="Group name #1">Group id #1</group>
+        <group name="Group name #2">Group id #2</group>
+        ...
+        <group name="Group name #N">Group id #N</group>
     </faculty>
     ...
 </faculties>
@@ -126,36 +111,32 @@ Content:
 
 **General**
 
-URL: `/vyatsu/schedule/:group_id/:season`
+URL: `/vyatsu/schedule/:groupId/:season`
 
 Method: `GET`
 
 URL params:
 
- - `group_id=[number]`
- - `season='autumn' | 'spring'`
+ - `groupId` - group id, string
+ - `season` - semester, `autumn` - 1st semester, `spring` - 2nd semester
 
 **Success response:**
 
 Code: `200`
 
 Content:
-```js
-{ 
-    "group": "group name",
-    "date_range": ["first_date", "second_date"],
-    "weeks": [
-        [
-            ["Subject", "Yet another subject", ... ], //subjects on Monday
-            ...
-        ], //odd week
-        [
-            ["Some boring suject", ... ], //subjects on Monday
-            ...
-        ] //even week
-    ]
-}
-```
+
+JSON object with following fields:
+
+`"group"` - group name, string
+
+`"date_range"` - dates for current schedule, array of two strings `"ddMMYYYY"`
+
+`"weeks"` - schedule, three-dimension array `[week_number][day_number][lesson_number]` of strings, where 
+
+- `week_number` = `0` or `1`, `0` - odd week, `1` - even week 
+- `day_number` = `0..5`, `0` - Monday, `1` - Tuesday, etc
+- `lesson_number` = `0..6`, `0` - 1st lesson, `1` - 2nd lesson, etc
   
 **Error responses:**
 
@@ -168,6 +149,8 @@ Content:
 }
 ```
 ---------
+Code: `422`
+
 Content:
 ```json
 {
@@ -228,27 +211,13 @@ Code: `200`
 Content:
 ```js
 [
-    {
-        "start": "8:20", "end": "9:50"
-    },  
-    {  
-        "start": "10:00", "end": "11:30"
-    },  
-    {  
-        "start": "11:45", "end": "13:15"
-    },  
-    {  
-        "start": "14:00", "end": "15:30"
-    },  
-    {  
-        "start": "15:45", "end": "17:15"
-    },  
-    {  
-        "start": "17:20", "end": "18:50"
-    },  
-    {  
-        "start": "18:55", "end": "20:25"
-    }
+    { "start": "8:20",  "end": "9:50"  },  
+    { "start": "10:00", "end": "11:30" },  
+    { "start": "11:45", "end": "13:15" },  
+    { "start": "14:00", "end": "15:30" },  
+    { "start": "15:45", "end": "17:15" },  
+    { "start": "17:20", "end": "18:50" },  
+    { "start": "18:55", "end": "20:25" }
 ]
 ```
 
@@ -265,16 +234,11 @@ Method: `GET`
 Code: `200`
 
 Content:
-```js
-[
-    {
-        "id": "Group id",
-        "name": "Group name"
-    },
-    ...
-    {
-        "id": "Group id",
-        "name": "Group name"
-    }
-]
+
+JSON array of objects:
+```json
+{
+    "id": "Group id",
+    "name": "Group name"
+}
 ```
