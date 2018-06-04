@@ -1,5 +1,9 @@
 # REST API for VyatSU schedule web server
 
+## Generate OpenAPI docs
+
+`redoc-cli bundle OpenAPI.json`
+
 ## API v1.0
 
 ### Show schedule calls
