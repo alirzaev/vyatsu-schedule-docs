@@ -242,3 +242,32 @@ JSON array of objects:
     "name": "Group name"
 }
 ```
+
+### Show list of groups ordered by faculties (JSON)
+
+**General**
+
+URL: `/vyatsu/v2/groups/by_faculty.json`
+
+Method: `GET`
+
+**Success response:**
+
+Code: `200`
+
+Content:
+
+JSON array of the objects with such fields:
+
+`"faculty"` - faculty name, string
+
+`"groups"` - groups, array of the following objects:
+
+
+```json
+{
+    "id": "<group_id>",
+    "name": "<group_name>"
+}
+```
+
