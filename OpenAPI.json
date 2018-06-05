@@ -79,6 +79,55 @@
 					}
 				}
 			}
+		},
+		"/vyatsu/v2/groups/by_faculty.json": {
+			"get": {
+				"summary": "Get lists of groups",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Get lists of groups ordered by faculties",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/FacultyInfo"
+							}
+						},
+						"examples": {
+							"application/json": [
+								{
+									"faculty": "ИББТ (Институт биологии и биотехнологии)",
+									"groups": [
+									  {
+										"id": "8853",
+										"name": "БТб-1101-02-00"
+									  },
+									  {
+										"id": "8854",
+										"name": "БТб-1102-02-00"
+									  }
+									]
+								},
+								{
+									"faculty": "ФАВТ (Факультет автоматики и вычислительной техники)",
+									"groups": [
+										{
+											"id": "8850",
+											"name": "БИб-1301-01-00"
+										},
+										{
+											"id": "8367",
+											"name": "БИб-2301-01-00"
+										}
+									]
+								}
+							]
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
@@ -101,6 +150,20 @@
 				},
 				"name": {
 					"type": "string"
+				}
+			}
+		},
+		"FacultyInfo": {
+			"type": "object",
+			"properties": {
+				"faculty": {
+					"type": "string"
+				},
+				"groups": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GroupInfo"
+					}
 				}
 			}
 		}
