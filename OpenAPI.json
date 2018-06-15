@@ -41,7 +41,7 @@
 				}
 			}
 		},
-		"/vyatsu/v2/groups.json": {
+		"/vyatsu/v2/groups/list": {
 			"get": {
 				"summary": "Get groups",
 				"produces": [
