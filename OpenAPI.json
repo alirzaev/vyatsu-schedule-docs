@@ -11,7 +11,7 @@
 	},
 	"host": "https://vyatsuscheduleapi.herokuapp.com",
 	"paths": {
-		"/vyatsu/v2/calls": {
+		"/api/v2/calls": {
 			"get": {
 				"summary": "Get calls schedule",
 				"produces": [
@@ -41,7 +41,7 @@
 				}
 			}
 		},
-		"/vyatsu/v2/groups/list": {
+		"/api/v2/groups/list": {
 			"get": {
 				"summary": "Get groups",
 				"produces": [
