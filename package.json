@@ -1,8 +1,7 @@
 {
-  "name": "vyatsu_schedule_server_docs",
-  "version": "1.0.0",
-  "description": "REST API for VyatSU schedule web server",
-  "main": "index.js",
+  "name": "vyatsu_schedule_api_docs",
+  "version": "2.0.0",
+  "description": "Docs for VyatSU schedule API server",
   "dependencies": {
     "redoc-cli": "^0.4.0"
   },
@@ -10,6 +9,5 @@
   "scripts": {
     "bundle": "redoc-cli bundle OpenAPI.json"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "alirzaev1996@gmail.com"
 }
