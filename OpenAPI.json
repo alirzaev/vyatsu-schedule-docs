@@ -1,8 +1,7 @@
 {
-	"openapi": "3.0",
+	"swagger": "2.0",
 	"info": {
 		"title": "VyatSU schedule api server",
-		"description": "This service parse pdf files from VyatSU server in JSON format",
 		"contact": {
 			"name": "Ali Rzaev",
 			"email": "alirzaev1996@gmail.com",
@@ -10,9 +9,7 @@
 		},
 		"version": "2.0.0"
 	},
-	"servers": [{
-		"url": "https://vyatsuscheduleapi.herokuapp.com"
-	}],
+	"host": "https://api.vyatsuschedule.ru",
 	"paths": {
 		"/api/v2/calls": {
 			"get": {
@@ -26,38 +23,18 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/components/schemas/Call"
+								"$ref": "#/definitions/Call"
 							}
 						},
 						"examples": {
-							"application/json": [{
-									"start": "8:20",
-									"end": "9:50"
-								},
-								{
-									"start": "10:00",
-									"end": "11:30"
-								},
-								{
-									"start": "11:45",
-									"end": "13:15"
-								},
-								{
-									"start": "14:00",
-									"end": "15:30"
-								},
-								{
-									"start": "15:45",
-									"end": "17:15"
-								},
-								{
-									"start": "17:20",
-									"end": "18:50"
-								},
-								{
-									"start": "18:55",
-									"end": "20:25"
-								}
+							"application/json": [
+								{ "start": "8:20",  "end": "9:50"  },  
+								{ "start": "10:00", "end": "11:30" },  
+								{ "start": "11:45", "end": "13:15" },  
+								{ "start": "14:00", "end": "15:30" },  
+								{ "start": "15:45", "end": "17:15" },  
+								{ "start": "17:20", "end": "18:50" },  
+								{ "start": "18:55", "end": "20:25" }
 							]
 						}
 					}
@@ -76,11 +53,12 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/components/schemas/GroupInfo"
+								"$ref": "#/definitions/GroupInfo"
 							}
 						},
 						"examples": {
-							"application/json": [{
+							"application/json": [
+								{
 									"id": "8472",
 									"name": "ПИм-2302-02-00"
 								},
@@ -102,7 +80,7 @@
 				}
 			}
 		},
-		"/vyatsu/v2/groups/by_faculty.json": {
+		"/api/v2/groups/by_faculty": {
 			"get": {
 				"summary": "Get lists of groups",
 				"produces": [
@@ -114,25 +92,28 @@
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/components/schemas/FacultyInfo"
+								"$ref": "#/definitions/FacultyInfo"
 							}
 						},
 						"examples": {
-							"application/json": [{
+							"application/json": [
+								{
 									"faculty": "ИББТ (Институт биологии и биотехнологии)",
-									"groups": [{
-											"id": "8853",
-											"name": "БТб-1101-02-00"
-										},
-										{
-											"id": "8854",
-											"name": "БТб-1102-02-00"
-										}
+									"groups": [
+									  {
+										"id": "8853",
+										"name": "БТб-1101-02-00"
+									  },
+									  {
+										"id": "8854",
+										"name": "БТб-1102-02-00"
+									  }
 									]
 								},
 								{
 									"faculty": "ФАВТ (Факультет автоматики и вычислительной техники)",
-									"groups": [{
+									"groups": [
+										{
 											"id": "8850",
 											"name": "БИб-1301-01-00"
 										},
@@ -149,41 +130,39 @@
 			}
 		}
 	},
-	"components": {
-		"schemas": {
-			"Call": {
-				"type": "object",
-				"properties": {
-					"start": {
-						"type": "string"
-					},
-					"end": {
-						"type": "string"
-					}
+	"definitions": {
+		"Call": {
+			"type": "object",
+			"properties": {
+				"start": {
+					"type": "string"
+				},
+				"end": {
+					"type": "string"
 				}
-			},
-			"GroupInfo": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					}
+			}
+		},
+		"GroupInfo": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
 				}
-			},
-			"FacultyInfo": {
-				"type": "object",
-				"properties": {
-					"faculty": {
-						"type": "string"
-					},
-					"groups": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/GroupInfo"
-						}
+			}
+		},
+		"FacultyInfo": {
+			"type": "object",
+			"properties": {
+				"faculty": {
+					"type": "string"
+				},
+				"groups": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GroupInfo"
 					}
 				}
 			}
