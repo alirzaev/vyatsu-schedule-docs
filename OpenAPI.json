@@ -9,7 +9,7 @@
 		},
 		"version": "2.0.0"
 	},
-	"host": "https://api.vyatsuschedule.ru",
+	"host": "api.vyatsuschedule.ru",
 	"paths": {
 		"/api/v2/calls": {
 			"get": {
