@@ -138,11 +138,16 @@
 				"parameters": [
 					{
 						"name": "group_id",
-						"in": "path"
+						"in": "path",
+						"type": "integer",
+						"description": "The group for which schedule is requested"
 					},
 					{
 						"name": "season",
-						"in": "path"
+						"in": "path",
+						"type": "string",
+						"description": "The semester for which group's schedule is requested",
+						"enum": ["autumn", "spring"]
 					}
 				],
 				"responses": {
