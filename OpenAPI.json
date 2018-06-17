@@ -283,6 +283,27 @@
 					}
 				}
 			}
+		},
+		"/api/v2/season/current": {
+			"get": {
+				"summary": "Get current season",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Current season: `autumn` - first, `spring` - second",
+						"schema": {
+							"$ref": "#/definitions/SeasonInfo"
+						},
+						"examples": {
+							"application/json": {
+								"season": "spring"
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
@@ -357,6 +378,15 @@
 					"items": {
 						"$ref": "#/definitions/WeekInfo"
 					}
+				}
+			}
+		},
+		"SeasonInfo": {
+			"type": "object",
+			"properties": {
+				"season": {
+					"type": "string",
+					"enum": ["autumn", "spring"]
 				}
 			}
 		}
