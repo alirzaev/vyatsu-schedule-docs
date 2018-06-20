@@ -1,6 +1,6 @@
 {
   "name": "vyatsu_schedule_api_docs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Docs for VyatSU schedule API server",
   "dependencies": {
     "redoc-cli": "^0.4.0"

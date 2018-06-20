@@ -7,7 +7,7 @@
 			"email": "alirzaev1996@gmail.com",
 			"url": "https://vk.me/rzaevali"
 		},
-		"version": "2.0.0"
+		"version": "2.0.1"
 	},
 	"host": "api.vyatsuschedule.ru",
 	"paths": {
@@ -273,11 +273,36 @@
 							    ]
 							  ],
 							  "group": "ИВТб-2301-01-00",
-							  "today": [1, 0],
-							  "date_range": [
-							    "18122017",
-							    "31122017"
-							  ]
+							  "today": {
+							  	"week": 1,
+							  	"dayOfWeek": 0
+							  },
+							  "date_range": {
+							    "begin": "18122017",
+							    "end": "31122017"
+							  }
+							}
+						}
+					},
+					"422": {
+						"description": "Error during schedule parsing or invalid path params",
+						"schema": {
+							"$ref": "#/definitions/ErrorInfo"
+						},
+						"examples": {
+							"application/json": {
+								"error": "NO_SUCH_GROUP"
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error",
+						"schema": {
+							"$ref": "#/definitions/ErrorInfo"
+						},
+						"examples": {
+							"application/json": {
+								"error": "INTERNAL SERVER ERROR"
 							}
 						}
 					}
@@ -355,6 +380,32 @@
 				"$ref": "#/definitions/DayInfo"
 			}
 		},
+		"DateRangeInfo": {
+			"type": "object",
+			"properties": {
+				"begin": {
+					"type": "string"
+				},
+				"end": {
+					"type": "string"
+				}
+			}
+		},
+		"TodayInfo": {
+			"type": "object",
+			"properties": {
+				"week": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"dayOfWeek": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 5
+				}
+			}
+		},
 		"ScheduleInfo": {
 			"type": "object",
 			"properties": {
@@ -362,22 +413,24 @@
 					"type": "string"
 				},
 				"today": {
-					"type": "array",
-					"items": {
-						"type": "integer"
-					}
+					"$ref": "#/definitions/TodayInfo"
 				},
 				"date_range": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
+					"$ref": "#/definitions/DateRangeInfo"
 				},
 				"weeks": {
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/WeekInfo"
 					}
+				}
+			}
+		},
+		"ErrorInfo": {
+			"type": "object",
+			"properties": {
+				"error": {
+					"type": "string"
 				}
 			}
 		},
