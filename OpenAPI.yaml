@@ -280,15 +280,19 @@ definitions:
     properties:
       id:
         type: string
+        description: Group id
       name:
         type: string
+        description: Group name
   FacultyInfo:
     type: object
     properties:
       faculty:
         type: string
+        description: Faculty shorthand name with full name in parentheses 
       groups:
         type: array
+        description: List of faculty groups as objects
         items:
           "$ref": "#/definitions/GroupInfo"
   DayInfo:
