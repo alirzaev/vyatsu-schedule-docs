@@ -62,12 +62,12 @@ paths:
               name: ПМИм-2301-01-00
   "/api/v2/groups/by_faculty":
     get:
-      summary: Get lists of groups
+      summary: Get groups of faculties
       produces:
       - application/json
       responses:
         '200':
-          description: Lists of groups ordered by faculties
+          description: Lists of groups of faculties
           schema:
             type: array
             items:
@@ -94,12 +94,12 @@ paths:
       parameters:
       - name: group_id
         in: path
-        type: integer
-        description: The group for which schedule is requested
+        type: string
+        description: The group for which you want the schedule
       - name: season
         in: path
         type: string
-        description: The semester for which group's schedule is requested
+        description: The semester (aka _season_) for which you want the group's schedule
         enum:
         - autumn
         - spring
@@ -239,16 +239,16 @@ paths:
                 begin: '18122017'
                 end: '31122017'
         '422':
-          description: Error during schedule parsing or invalid path params
+          description: Error during schedule parsing or due to incorrect path params
           schema:
-            "$ref": "#/definitions/ErrorInfo"
+            "$ref": "#/definitions/ScheduleErrorInfo"
           examples:
             application/json:
               error: NO_SUCH_GROUP
         '500':
           description: Unexpected error
           schema:
-            "$ref": "#/definitions/ErrorInfo"
+            "$ref": "#/definitions/UnknownErrorInfo"
           examples:
             application/json:
               error: INTERNAL SERVER ERROR
@@ -259,7 +259,7 @@ paths:
       - application/json
       responses:
         '200':
-          description: 'Current season: `autumn` - first, `spring` - second'
+          description: 'Current season'
           schema:
             "$ref": "#/definitions/SeasonInfo"
           examples:
@@ -305,20 +305,26 @@ definitions:
       "$ref": "#/definitions/DayInfo"
   DateRangeInfo:
     type: object
+    description: Date range for which schedule is valid
     properties:
       begin:
         type: string
+        description: Range's begin in the date format `ddMMyyyy`
       end:
         type: string
+        description: Range's end in the date format `ddMMyyy`
   TodayInfo:
     type: object
+    description: Pointer to the today's schedule in the field `weeks`
     properties:
       week:
         type: integer
+        description: Index of the week
         minimum: 0
         maximum: 1
       dayOfWeek:
         type: integer
+        description: Index of the day in the week
         minimum: 0
         maximum: 5
   ScheduleInfo:
@@ -326,24 +332,45 @@ definitions:
     properties:
       group:
         type: string
+        description: Group name
       today:
         "$ref": "#/definitions/TodayInfo"
       date_range:
         "$ref": "#/definitions/DateRangeInfo"
       weeks:
         type: array
+        description: |
+          Schedule as three-dimensional array `[week_number][day_number][lesson_number]` of strings, where 
+          * week_number = `0..1`, `0` - odd week, `1` - even week
+          * day_number = `0..5`, `0` - Monday, `1` - Tuesday, etc
+          * lesson_number = `0..6`, `0` - 1st lesson, `1` - 2nd lesson, etc
         items:
           "$ref": "#/definitions/WeekInfo"
-  ErrorInfo:
+  ScheduleErrorInfo:
     type: object
     properties:
       error:
+        description: |
+          Error description. Known error types:
+          * PDF_PARSE_ERROR - Unknown error was occurred during schedule parsing
+          * INVALID_SEASON - Parameter `season` doesn't equal to `autumn` nor `spring`
+          * NO_SUCH_GROUP - No group with group id passed in parameter `group_id`
+          * NO_SUCH_SCHEDULE - No schedule for given combination of group id and season
         type: string
+        maxLength: 40
+  UnknownErrorInfo:
+    type: object
+    properties:
+      error:
+        description: Error description
+        type: string
+        maxLength: 40
   SeasonInfo:
     type: object
     properties:
       season:
         type: string
+        description: 'Name of the season: `autumn` - first, `spring` - second'
         enum:
         - autumn
         - spring
