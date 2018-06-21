@@ -2,7 +2,7 @@
 
 ## Generate ReDoc docs
 
-`redoc-cli bundle OpenAPI.json`
+`redoc-cli bundle OpenAPI.yaml`
 
 ## Check out the documentation
 
