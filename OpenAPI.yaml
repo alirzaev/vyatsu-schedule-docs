@@ -38,6 +38,13 @@ paths:
               end: '18:50'
             - start: '18:55'
               end: '20:25'
+        '500':
+          description: Unexpected error
+          schema:
+            "$ref": "#/definitions/UnknownErrorInfo"
+          examples:
+            application/json:
+              error: INTERNAL SERVER ERROR
   "/api/v2/groups/list":
     get:
       summary: Get list of groups
@@ -60,6 +67,13 @@ paths:
               name: МКб-3301-51-00
             - id: '8423'
               name: ПМИм-2301-01-00
+        '500':
+          description: Unexpected error
+          schema:
+            "$ref": "#/definitions/UnknownErrorInfo"
+          examples:
+            application/json:
+              error: INTERNAL SERVER ERROR
   "/api/v2/groups/by_faculty":
     get:
       summary: Get groups of faculties
@@ -86,6 +100,13 @@ paths:
                 name: БИб-1301-01-00
               - id: '8367'
                 name: БИб-2301-01-00
+        '500':
+          description: Unexpected error
+          schema:
+            "$ref": "#/definitions/UnknownErrorInfo"
+          examples:
+            application/json:
+              error: INTERNAL SERVER ERROR
   "/api/v2/schedule/{group_id}/{season}":
     get:
       summary: Get group's schedule
@@ -265,6 +286,13 @@ paths:
           examples:
             application/json:
               season: spring
+        '500':
+          description: Unexpected error
+          schema:
+            "$ref": "#/definitions/UnknownErrorInfo"
+          examples:
+            application/json:
+              error: INTERNAL SERVER ERROR
 definitions:
   Call:
     type: object
