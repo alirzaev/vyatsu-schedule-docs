@@ -16,7 +16,8 @@ paths:
       - application/json
       responses:
         '200':
-          description: Calls schedule as array of lesson' time intervals
+          description: | 
+            Calls schedule as array of lesson' time intervals.
           schema:
             type: array
             items:
@@ -270,8 +271,10 @@ definitions:
     properties:
       start:
         type: string
+        description: Lesson's begin in the time format `hh:mm`
       end:
         type: string
+        description: Lesson's end in the time format `hh:mm`
   GroupInfo:
     type: object
     properties:
