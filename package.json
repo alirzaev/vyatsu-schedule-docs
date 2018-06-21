@@ -7,7 +7,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "bundle": "redoc-cli bundle OpenAPI.json"
+    "bundle": "redoc-cli bundle OpenAPI.yaml"
   },
   "author": "alirzaev1996@gmail.com"
 }
