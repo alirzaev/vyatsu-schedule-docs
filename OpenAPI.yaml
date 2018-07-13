@@ -81,7 +81,7 @@ paths:
       - application/json
       responses:
         '200':
-          description: Lists of groups of faculties
+          description: Lists of groups in the faculties
           schema:
             type: array
             items:
@@ -340,7 +340,7 @@ definitions:
         description: Range's begin in the date format `ddMMyyyy`
       end:
         type: string
-        description: Range's end in the date format `ddMMyyy`
+        description: Range's end in the date format `ddMMyyyy`
   TodayInfo:
     type: object
     description: Pointer to the today's schedule in the field `weeks`
@@ -355,6 +355,9 @@ definitions:
         description: Index of the day in the week
         minimum: 0
         maximum: 5
+      date:
+        type: string
+        description: Date in the format `ddMMyyyy`
   ScheduleInfo:
     type: object
     properties:
