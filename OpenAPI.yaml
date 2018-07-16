@@ -256,6 +256,7 @@ paths:
               today:
                 week: 1
                 dayOfWeek: 0
+                date: '25122017'
               date_range:
                 begin: '18122017'
                 end: '31122017'
