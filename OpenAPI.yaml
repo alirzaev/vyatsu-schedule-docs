@@ -6,8 +6,8 @@ info:
     name: Ali Rzaev
     email: alirzaev1996@gmail.com
     url: https://vk.me/rzaevali
-  version: 2.0.2
-host: api.vyatsuschedule.ru
+  version: 2.0.3
+host: vyatsu-schedule-api.herokuapp.com 
 paths:
   "/api/v2/calls":
     get:

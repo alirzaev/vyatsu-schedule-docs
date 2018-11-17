@@ -6,4 +6,4 @@
 
 ## Check out the documentation
 
-[api.vyatsuschedule.ru/docs](https://api.vyatsuschedule.ru/docs)
+[vyatsuschedule.github.io/docs](https://vyatsuschedule.github.io/docs)
