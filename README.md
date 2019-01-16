@@ -1,9 +1,5 @@
-# REST API for VyatSU schedule web server
+# Документация по REST API для [backend-сервера](https://github.com/alirzaev/vyatsu-schedule-backend) VyatSU schedule
 
-## Generate ReDoc docs
+Написано с помощью [Rebilly/ReDoc](https://github.com/Rebilly/ReDoc).
 
-`redoc-cli bundle OpenAPI.yaml`
-
-## Check out the documentation
-
-[vyatsuschedule.github.io/docs](https://vyatsuschedule.github.io/docs)
+Просмотр документации: https://alirzaev.github.io/vyatsu-schedule-docs.
