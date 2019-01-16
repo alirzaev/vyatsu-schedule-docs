@@ -1,7 +1,7 @@
 script:
   - mkdir dist
   - cp index.html dist/
-  - cp OpenAPI.yaml dist/
+  - cp specification.yml dist/
 deploy:
   - provider: pages
     skip-cleanup: true
